@@ -31,22 +31,23 @@ spring:
       datasource:
         master:
           name: ruoyi-vue-pro
-          url: jdbc:mysql://127.0.0.1:3306/${spring.datasource.dynamic.datasource.master.name}?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=CTT
+          url: ${MYSQL_URL}/${spring.datasource.dynamic.datasource.master.name}?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=CTT
           driver-class-name: com.mysql.jdbc.Driver
-          username: root
-          password: 123456
+          username: ruoyi-vue-pro
+          password: ruoyi-vue-pro
         slave: # 模拟从库，可根据自己需要修改
           name: ruoyi-vue-pro
-          url: jdbc:mysql://127.0.0.1:3306/${spring.datasource.dynamic.datasource.slave.name}?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=CTT
+          url: ${MYSQL_URL}/${spring.datasource.dynamic.datasource.slave.name}?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=CTT
           driver-class-name: com.mysql.jdbc.Driver
-          username: root
-          password: 123456
+          username: ruoyi-vue-pro
+          password: ruoyi-vue-pro
 
   # Redis 配置。Redisson 默认的配置足够使用，一般不需要进行调优
   redis:
-    host: 127.0.0.1 # 地址
-    port: 6379 # 端口
+    host:  ${REDIS_ADDR} # 地址
+    port: ${REDIS_PORT}  # 端口
     database: 0 # 数据库索引
+    password: ${REDIS_PASSWORD} # 密码，建议生产环境开启
 
 mybatis:
   lazy-initialization: true # 单元测试，设置 MyBatis Mapper 延迟加载，加速每个单元测试
